@@ -1,0 +1,140 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-zinc-50: #fafafa;
+    --color-zinc-100: #f5f5f5;
+    --color-zinc-200: #e5e5e5;
+    --color-zinc-300: #d4d4d4;
+    --color-zinc-400: #a3a3a3;
+    --color-zinc-500: #737373;
+    --color-zinc-600: #525252;
+    --color-zinc-700: #404040;
+    --color-zinc-800: #262626;
+    --color-zinc-900: #171717;
+    --color-zinc-950: #0a0a0a;
+
+    --color-accent: #d96b8a;
+    --color-accent-content: #a43d5e;
+    --color-accent-foreground: var(--color-white);
+}
+
+@layer theme {
+    .dark {
+        --color-accent: #f29ab4;
+        --color-accent-content: #ffd6e1;
+        --color-accent-foreground: #21151a;
+    }
+}
+
+@layer base {
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentColor);
+    }
+}
+
+[data-flux-field]:not(ui-radio, ui-checkbox) {
+    @apply grid gap-2;
+}
+
+[data-flux-label] {
+    @apply  !mb-0 !leading-tight;
+}
+
+input:focus[data-flux-control],
+textarea:focus[data-flux-control],
+select:focus[data-flux-control] {
+    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+}
+
+    html {
+        color-scheme: light;
+    }
+
+    html.dark {
+        color-scheme: dark;
+    }
+
+    input:not([type='checkbox']):not([type='radio']):not([type='file']),
+    textarea,
+    select {
+        min-height: 2.75rem;
+        border: 1px solid #292127 !important;
+        border-radius: 0.75rem;
+        background-color: #fffdfd;
+        box-shadow: inset 0 1px 2px rgb(41 33 39 / 5%);
+        color: #21151a;
+        font-size: 0.9375rem;
+        transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease, transform 150ms ease;
+    }
+
+    textarea {
+        min-height: 7rem;
+        padding-top: 0.75rem;
+        resize: vertical;
+    }
+
+    input:not([type='checkbox']):not([type='radio']):not([type='file']):hover,
+    textarea:hover,
+    select:hover {
+        background-color: #fff7fa;
+        border-color: #a43d5e !important;
+    }
+
+    input:not([type='checkbox']):not([type='radio']):not([type='file']):focus,
+    textarea:focus,
+    select:focus {
+        border-color: #d96b8a !important;
+        box-shadow: 0 0 0 3px rgb(217 107 138 / 18%), inset 0 1px 2px rgb(41 33 39 / 5%);
+        outline: none;
+        transform: translateY(-1px);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #6b7280;
+    }
+
+    html.dark body {
+        background-color: #171116;
+        color: #fff7fa;
+    }
+
+    html.dark input:not([type='checkbox']):not([type='radio']):not([type='file']),
+    html.dark textarea,
+    html.dark select {
+        border-color: #0b080a !important;
+        background-color: #2a2026;
+        box-shadow: inset 0 1px 2px rgb(0 0 0 / 18%);
+        color: #fff7fa;
+    }
+
+    html.dark input:not([type='checkbox']):not([type='radio']):not([type='file']):hover,
+    html.dark textarea:hover,
+    html.dark select:hover {
+        background-color: #33242c;
+        border-color: #f29ab4 !important;
+    }
+
+    html.dark input::placeholder,
+    html.dark textarea::placeholder {
+        color: #c3aeb7;
+    }
+
+/* \[:where(&)\]:size-4 {
+    @apply size-4;
+} */
