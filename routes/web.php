@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('productos', ProductoController::class)->except('show');
     Route::resource('compras', CompraController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']);
+    Route::post('compras/{compra}/agregar-cantidad', [CompraController::class, 'agregarCantidad'])->name('compras.agregar-cantidad');
     Route::resource('ventas', VentaController::class)->except('index');
     Route::get('ventas', [VentaController::class, 'index'])->name('ventas.index');
     Route::post('packs/{pack}/sell', [VentaController::class, 'sellPack'])->name('packs.sell');
