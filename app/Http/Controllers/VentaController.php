@@ -16,7 +16,7 @@ class VentaController extends Controller
 {
     public function index(Request $request): View
     {
-        $ventas = Venta::withCount('detalles')->latest('fecha')->paginate(10);
+        $ventas = Venta::latest('fecha')->paginate(10);
         return view('ventas.index', compact('ventas'));
     }
 

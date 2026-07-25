@@ -14,7 +14,9 @@ class CompraController extends Controller
 {
     public function index(Request $request): View
     {
-        $compras = Compra::with('producto')->latest('fecha')->paginate(10);
+        $compras = Compra::with([
+            'producto' => fn ($query) => $query->withSum('detallesVenta as vendidas_total', 'cantidad'),
+        ])->latest('fecha')->paginate(10);
         return view('compras.index', compact('compras'));
     }
     public function create(): View { return view('compras.create', ['compra' => new Compra(['fecha' => now()]), 'productos' => Producto::where('estado', true)->orderBy('nombre')->get()]); }
